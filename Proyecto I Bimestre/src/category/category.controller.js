@@ -3,13 +3,14 @@
 import Category from './category.model.js'
 import { checkUpdate } from '../utils/validator.js'
 
-export const save = async(req, res)=>{
-    try{
 
+export const save = async(req, res)=>{  
+    try{
         let data = req.body
         let category = new Category(data)
         await category.save()
         return res.send({message: `Registered successfully,  ${category.name}`})
+        
     }catch(err){
         console.error(err)
         return res.status(500).send({message: 'Error registering category', err: err})

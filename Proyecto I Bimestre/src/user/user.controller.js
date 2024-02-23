@@ -4,6 +4,31 @@ import User from './user.model.js'
 import { encrypt, checkPassword, checkUpdate } from '../utils/validator.js'
 import {generateJwt} from '../utils/jwt.js'
 
+/*
+export const defaultAdmin = async()=>{
+    try{
+        const userExist  = await User.findOne({username: 'admin'})
+        if(userExist){
+            console.log('"Admin" default is in use')
+        }
+        let data = {
+            name: 'Admin',
+            lastname: 'Admin',
+            phone: '11111111',
+            email: 'admin',
+            username: 'admin',
+            password: await encrypt ('admin'),
+            role: 'ADMIN'
+        }
+        let user = new User (data)
+        await user.save()
+    }
+    catch(err){
+        console.error(err)
+    }
+}
+*/
+
 export const test = (req, res)=>{
     console.log('test is running')
     return res.send({message: 'Test is running'})
@@ -13,7 +38,7 @@ export const register = async(req, res)=>{
     try{
         let data = req.body
         data.password = await encrypt(data.password)
-        //data.role = 'CLIENT'
+        data.role = 'CLIENT'
         let user = new User(data)
         await user.save() 
         return res.send({message: `Registered successfully, can be logged with username ${user.username}`})

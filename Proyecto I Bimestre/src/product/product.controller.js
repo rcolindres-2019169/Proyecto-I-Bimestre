@@ -41,7 +41,7 @@ export const deleteU = async (req,res)=>{
         let { id } = req.params
         let deletedProduct = await Product.findOneAndDelete({_id: id})
         if(!deletedProduct) return res.status(404).send({message: 'Product not found and not deleted'})
-        return res.send({message: `Category with name ${deletedProduct.name} deleted successfully`})
+        return res.send({message: `Product with name ${deletedProduct.name} deleted successfully`})
     }catch(err){
         console.error(err)
         return res.status(500).send({message: 'Error deleting product'})
