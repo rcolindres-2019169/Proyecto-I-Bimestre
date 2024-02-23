@@ -9,10 +9,10 @@ export const save = async(req, res)=>{
         let data = req.body
         let category = new Category(data)
         await category.save()
-        return res.send({message: `Registered successfully, can be logged with username ${category.name}`})
+        return res.send({message: `Registered successfully,  ${category.name}`})
     }catch(err){
         console.error(err)
-        return res.status(500).send({message: 'Error registering controller', err: err})
+        return res.status(500).send({message: 'Error registering category', err: err})
     }
 
 }

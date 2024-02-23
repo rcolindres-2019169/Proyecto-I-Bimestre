@@ -26,7 +26,7 @@ const productSchema = Schema({
         ref: 'user',
         required: true
     }
-    
+}, {
+    versionKey: false
 })
-
 export default model('product', productSchema)
