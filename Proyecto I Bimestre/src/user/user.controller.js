@@ -4,18 +4,19 @@ import User from './user.model.js'
 import { encrypt, checkPassword, checkUpdate } from '../utils/validator.js'
 import {generateJwt} from '../utils/jwt.js'
 
-/*
+
 export const defaultAdmin = async()=>{
     try{
         const userExist  = await User.findOne({username: 'admin'})
         if(userExist){
             console.log('"Admin" default is in use')
+            return
         }
         let data = {
             name: 'Admin',
             lastname: 'Admin',
             phone: '11111111',
-            email: 'admin',
+            email: 'admin@admin.com',
             username: 'admin',
             password: await encrypt ('admin'),
             role: 'ADMIN'
@@ -27,7 +28,7 @@ export const defaultAdmin = async()=>{
         console.error(err)
     }
 }
-*/
+
 
 export const test = (req, res)=>{
     console.log('test is running')
@@ -50,13 +51,14 @@ export const register = async(req, res)=>{
 
 export const login = async(req, res)=>{
     try{
-        let { username, password } = req.body
-        let user = await User.findOne({username}) 
-        if(user && await checkPassword(password, user.password)){
+        let data = req.body
+        let user = await User.findOne({$or: [{username: data.username},{ email: data.email}]}) 
+        if(user || await checkPassword(data.password, user.password)){
             let loggedUser = {
                 uid: user._id,
                 username: user.username,
                 name: user.name,
+                email: user.email,
                 role: user.role
             }
             let token = await generateJwt(loggedUser)
@@ -68,7 +70,7 @@ export const login = async(req, res)=>{
                 }
             )
         }
-        return res.status(404).send({message: 'Invalid credentials'})
+        if(!user) return res.status(404).send({message: 'Error login'})
     }catch(err){
         console.error(err)
         return res.status(500).send({message: 'Error to login'})
@@ -79,6 +81,10 @@ export const update = async(req, res)=>{
     try{
         let { id } = req.params
         let data = req.body
+        const existingUser = await User.findOne({ name: data.username });
+        if (existingUser) {
+            return res.status(400).send({ message: 'Username with the same name already exists' });
+        }
         let update = checkUpdate(data, id)
         if(!update) return res.status(400).send({message: 'Have submitted some data that cannot be updated or missing data'})
         let updatedUser = await User.findOneAndUpdate(
@@ -129,5 +135,32 @@ export const search = async(req,res)=>{
     }catch(err){
         console.error(err)
         return res.status(500).send({message: 'Error searching users'})
+    }
+}
+
+
+export const newPassword = async (req,res)=>{
+    try{
+        let {oldPassword, newPassword} = req.body
+        let {id} = req.params
+        let uid = req.user._id
+        if(id != uid) return res.status(401).send({message: 'You can only update your password in your account'})
+        let user  = await User.findOne({_id: id })
+        if(!user) return res.status(401).send({message: 'User not found (not exist, incorrect)'})
+        
+        let passOldPassword = await checkPassword(oldPassword, user.password)
+        if(!passOldPassword) return res.status(400).send({message: 'The old password is incorrect'})
+        if(oldPassword === newPassword) return res.status(500).send({message: 'Enter a new password for update'})
+
+        let updatedUser = await User.findOneAndUpdate(
+            {_id : id},
+            {password : await encrypt(newPassword)},
+            {new: true}
+        )
+        if(!updatedUser) return res.status(404).send({message: 'User not found or password'})
+        return res.send({message: 'Password updated successfullu', updatedUser})
+    }catch(err){
+        console.error(err)
+        return res.status(500).send({message: 'Error updating the password ', err:err })
     }
 }

@@ -37,8 +37,8 @@ const userSchema = Schema({
         required: true
     }
 }, {
-        versionKey: false //Desahabilitar el __v (version del documento)
-})
+        versionKey: false 
+    })
 
 
 export default model('user', userSchema)

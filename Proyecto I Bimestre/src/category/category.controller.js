@@ -1,12 +1,35 @@
 'use strict'
 
+import Product from '../product/product.model.js'
 import Category from './category.model.js'
 import { checkUpdate } from '../utils/validator.js'
 
+export const defaultCategory = async()=>{
+    try{
+        const categoryExist = await Category.findOne({name: 'default'})
+        if(categoryExist){
+            console.log('Category "default" exist.')
+            return
+        }
+        let data = {
+            name: 'default',
+            description: 'category Default'
+        }
+        let category = new Category (data)
+        await category.save()
+    }
+    catch(err){
+        console.error(err)
+    }
+}
 
 export const save = async(req, res)=>{  
     try{
         let data = req.body
+        const existingCategory = await Category.findOne({ name: data.name });
+        if (existingCategory) {
+            return res.status(400).send({ message: 'Category with the same name already exists' });
+        }
         let category = new Category(data)
         await category.save()
         return res.send({message: `Registered successfully,  ${category.name}`})
@@ -42,6 +65,12 @@ export const deleteU = async (req,res)=>{
         let { id } = req.params
         let deletedCategory = await Category.findOneAndDelete({_id: id})
         if(!deletedCategory) return res.status(404).send({message: 'Category not found and not deleted'})
+        const defaultCategory = await Category.findOne({ name: 'default' });
+        if (!defaultCategory) {
+            return res.status(404).send({ message: 'Default category not found' });
+        }
+
+        await Product.updateMany({ category: id }, { $set: { category: defaultCategory._id } });
         return res.send({message: `Category with name ${deletedCategory.name} deleted successfully`})
     }catch(err){
         console.error(err)
@@ -64,8 +93,11 @@ export const search = async(req,res)=>{
     try{
         let { search } = req.body
         let categories = await Category.find(
-            {name: search}
+            {name: { $regex: new RegExp(search, 'i') } }
         )
+        if (categories.length === 0) {
+            return res.status(404).send({ message: 'Categories not found' });
+        }
         if(!categories) return res.status(404).send({message: 'Categories not found'})
             return res.send({message: 'Categories found', categories})
     }catch(err){
