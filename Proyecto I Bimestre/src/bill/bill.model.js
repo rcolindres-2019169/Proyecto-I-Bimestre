@@ -1,29 +1,33 @@
 import { Schema, model } from "mongoose";
 
 const billSchema = Schema({
-    amount: {
-        type: Number,
-        required: true
-    },
+    
     totalPrice:{
         type:Number,
         required: true
     },
-    product:{
+    products:[{
         type: Schema.Types.ObjectId,
         ref: 'product',
         required: true
-    },
+    }],
     user:{
         type: Schema.Types.ObjectId,
         ref: 'user',
         required: true
     },
-    category:{
+    date:{
+        type: Date, 
+        default: Date.now 
+    },
+    buy:{
         type: Schema.Types.ObjectId,
-        ref: 'category',
+        ref: 'buy',
         required: true
     }
+    
+}, {
+    versionKey: false
 })
 
 export default model('bill', billSchema)
