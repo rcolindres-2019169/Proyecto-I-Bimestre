@@ -2,6 +2,8 @@
 
 import { checkUpdate } from '../utils/validator.js'
 import Bill from './bill.model.js'
+import { createWriteStream } from 'fs';
+import PDFDocument from 'pdfkit';
 
 export const save = async(req,res)=>{
     try{
@@ -12,6 +14,7 @@ export const save = async(req,res)=>{
 
         let bill = new Bill(data)
         await bill.save()
+        
         return res.send({message: `Bill registered`})
     }catch(err){
         console.error(err)
@@ -38,31 +41,34 @@ export const update = async (req,res) =>{
     }
 }
 
-export const get = async (req,res ) =>{
-    try{
-        let bills = await Bill.find()
-        return res.send({bills})
-    }catch(err){
-        console.error(err)
-        return res.status(500).send({ message: 'Error getting bills' })
+export const pdfview = async (req,res) =>{
+    const billId = req.params.id;
+
+    try {
+      const bill = await Bill.findById(billId).populate('user').populate('buy'); // Buscar la factura por su ID y poblar los campos de referencia
+  
+      if (!bill) {
+        throw new Error('La factura no fue encontrada');
+      }
+  
+      const doc = new PDFDocument();
+      const writeStream = createWriteStream('factura.pdf');
+      doc.pipe(writeStream);
+  
+      doc.fontSize(16).text('Factura', { align: 'center' }).moveDown(0.5);
+      doc.fontSize(14).text(`Factura #${bill._id}`, { underline: true }).moveDown(0.5);
+      doc.fontSize(12).text(`Total: ${bill.buy.totalPrice}`).moveDown(0.5);
+      doc.fontSize(12).text(`Fecha: ${bill.date}`).moveDown(0.5);
+      doc.fontSize(12).text(`Usuario: ${bill.user.name}`).moveDown(0.5); 
+      doc.fontSize(12).text(`Compra: ${bill.buy._id}`).moveDown(1);
+  
+      doc.end();
+      console.log('PDF generado correctamente');
+      res.send('PDF generado correctamente'); // Devuelve una respuesta al cliente
+    } catch (error) {
+      console.error('Error al generar el PDF:', error);
+      res.status(500).send('Error al generar el PDF'); // Devuelve un error al cliente si ocurre un error
     }
-}
-
-
-export const search = async(req,res)=>{
-    try{
-        let { search } = req.body
-        let bill = await Bill.find(
-            {_id: search}
-        )
-        if(!bill) return res.status(404).send({message: 'Bill not found'})
-            return res.send({message: 'Bill found', bill})
-    }catch(err){
-        console.error(err)
-        return res.status(500).send({message: 'Error searching bill'})
-    }
-} 
-
-export const pdfview = async (req,res)=>{
+  }
+   
     
-}

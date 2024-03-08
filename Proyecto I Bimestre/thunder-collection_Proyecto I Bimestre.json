@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Proyecto I Bimestre",
-    "dateExported": "2024-03-07T04:48:23.152Z",
+    "dateExported": "2024-03-08T06:38:53.359Z",
     "version": "1.1",
     "folders": [
         {
@@ -350,11 +350,11 @@
             "method": "POST",
             "sortNum": 160000,
             "created": "2024-02-23T04:18:35.700Z",
-            "modified": "2024-02-26T02:42:45.832Z",
+            "modified": "2024-03-08T05:47:50.478Z",
             "headers": [
                 {
-                    "name": "token",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWRiZjUwNDU1NDQ2Mjg1ODY2NTE0NDMiLCJ1c2VybmFtZSI6ImRlZmF1bHQiLCJuYW1lIjoiRGVmYXVsdCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcwODkxNTMzOCwiZXhwIjoxNzA4OTI2MTM4fQ.bTMOWv06O11geZo6BsiEAzQ62c2JAdz9GJrAcNC79Iw"
+                    "name": "authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWRiZjUwNDU1NDQ2Mjg1ODY2NTE0NDMiLCJ1c2VybmFtZSI6ImRlZmF1bHQiLCJuYW1lIjoiRGVmYXVsdCIsImVtYWlsIjoiZGVmYXVsdCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcwOTg3Njg1NCwiZXhwIjoxNzA5ODg3NjU0fQ.W7ntfvZvfgtHGX8ePslAPaDFr7ODCE6CYt65QVATgLw"
                 }
             ],
             "params": [],
@@ -388,6 +388,7 @@
                     }
                 ]
             },
+            "reqType": "post",
             "tests": []
         },
         {
@@ -475,11 +476,11 @@
             "method": "POST",
             "sortNum": 220000,
             "created": "2024-03-07T01:25:08.574Z",
-            "modified": "2024-03-07T03:56:52.198Z",
+            "modified": "2024-03-08T05:48:32.613Z",
             "headers": [
                 {
                     "name": "authorization",
-                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWRiZjUwNDU1NDQ2Mjg1ODY2NTE0NDMiLCJ1c2VybmFtZSI6ImRlZmF1bHQiLCJuYW1lIjoiRGVmYXVsdCIsImVtYWlsIjoiZGVmYXVsdCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcwOTc4MjAxNiwiZXhwIjoxNzA5NzkyODE2fQ.wwlhdDLetr0g6qAlBNTPoOGjD_tItpAAo6SemJAFg3I"
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWRiZjUwNDU1NDQ2Mjg1ODY2NTE0NDMiLCJ1c2VybmFtZSI6ImRlZmF1bHQiLCJuYW1lIjoiRGVmYXVsdCIsImVtYWlsIjoiZGVmYXVsdCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcwOTg3Njg1NCwiZXhwIjoxNzA5ODg3NjU0fQ.W7ntfvZvfgtHGX8ePslAPaDFr7ODCE6CYt65QVATgLw"
                 }
             ],
             "params": [],
@@ -493,15 +494,11 @@
                     },
                     {
                         "name": "products",
-                        "value": "65d81d602b59965546c25a30"
-                    },
-                    {
-                        "name": "products",
-                        "value": "65d81de969758d9783637619"
+                        "value": "65eaa686d1c6e3c867e06e1e"
                     },
                     {
                         "name": "amount",
-                        "value": "5"
+                        "value": "1"
                     }
                 ]
             },
@@ -513,14 +510,189 @@
             "colId": "6026ffc5-816c-40b5-adf8-6a2e467871bb",
             "containerId": "356a65ef-b5db-4abc-bd07-21a82f42578e",
             "name": "delete",
-            "url": "/buy/delete/id",
+            "url": "/buy/delete/65eaa9b6e1b859630eb10af1",
             "method": "DELETE",
             "sortNum": 260000,
             "created": "2024-03-07T01:25:31.077Z",
-            "modified": "2024-03-07T01:48:51.786Z",
+            "modified": "2024-03-08T06:01:47.378Z",
+            "headers": [
+                {
+                    "name": "authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWRiZjUwNDU1NDQ2Mjg1ODY2NTE0NDMiLCJ1c2VybmFtZSI6ImRlZmF1bHQiLCJuYW1lIjoiRGVmYXVsdCIsImVtYWlsIjoiZGVmYXVsdCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcwOTg3Njg1NCwiZXhwIjoxNzA5ODg3NjU0fQ.W7ntfvZvfgtHGX8ePslAPaDFr7ODCE6CYt65QVATgLw"
+                }
+            ],
+            "params": [],
+            "reqType": "del",
+            "tests": []
+        },
+        {
+            "_id": "7652cd78-0944-40d0-9677-f898b3a72fb0",
+            "colId": "6026ffc5-816c-40b5-adf8-6a2e467871bb",
+            "containerId": "7164d4fd-e6ba-41a4-86bb-8ccb0fc2723d",
+            "name": "save",
+            "url": "/bill/save",
+            "method": "POST",
+            "sortNum": 270000,
+            "created": "2024-03-07T23:57:21.651Z",
+            "modified": "2024-03-08T05:56:11.017Z",
+            "headers": [
+                {
+                    "name": "authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWRiZjUwNDU1NDQ2Mjg1ODY2NTE0NDMiLCJ1c2VybmFtZSI6ImRlZmF1bHQiLCJuYW1lIjoiRGVmYXVsdCIsImVtYWlsIjoiZGVmYXVsdCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcwOTg3Njg1NCwiZXhwIjoxNzA5ODg3NjU0fQ.W7ntfvZvfgtHGX8ePslAPaDFr7ODCE6CYt65QVATgLw"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "user",
+                        "value": "65dbf5045544628586651443"
+                    },
+                    {
+                        "name": "buy",
+                        "value": "65eaa868346ec693de5dfb74"
+                    }
+                ]
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "14f35386-b264-474d-9ccf-f1a734da2b43",
+            "colId": "6026ffc5-816c-40b5-adf8-6a2e467871bb",
+            "containerId": "7164d4fd-e6ba-41a4-86bb-8ccb0fc2723d",
+            "name": "update",
+            "url": "/bill/update/",
+            "method": "PUT",
+            "sortNum": 280000,
+            "created": "2024-03-07T23:57:26.594Z",
+            "modified": "2024-03-07T23:58:27.438Z",
             "headers": [],
             "params": [],
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "47f64330-13b0-4bb8-9fae-2490a4a5b879",
+            "colId": "6026ffc5-816c-40b5-adf8-6a2e467871bb",
+            "containerId": "7164d4fd-e6ba-41a4-86bb-8ccb0fc2723d",
+            "name": "pdf",
+            "url": "/bill/pdf/65eaa893346ec693de5dfb7e",
+            "method": "GET",
+            "sortNum": 290000,
+            "created": "2024-03-07T23:58:07.058Z",
+            "modified": "2024-03-08T06:04:13.948Z",
+            "headers": [
+                {
+                    "name": "authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWRiZjUwNDU1NDQ2Mjg1ODY2NTE0NDMiLCJ1c2VybmFtZSI6ImRlZmF1bHQiLCJuYW1lIjoiRGVmYXVsdCIsImVtYWlsIjoiZGVmYXVsdCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcwOTg3MjUwNywiZXhwIjoxNzA5ODgzMzA3fQ.ofXJuOj03AbMIVp6DmkxOIXKd7OHjP7hBamwonNr6Ww"
+                }
+            ],
+            "params": [],
             "reqType": "get",
+            "tests": []
+        },
+        {
+            "_id": "fc61b415-92d4-42f2-b809-38104a13f9bb",
+            "colId": "6026ffc5-816c-40b5-adf8-6a2e467871bb",
+            "containerId": "1e92b937-532b-49df-87b6-43cc45c00974",
+            "name": "searchCategory",
+            "url": "/product/searchCategory",
+            "method": "POST",
+            "sortNum": 300000,
+            "created": "2024-03-08T04:30:02.379Z",
+            "modified": "2024-03-08T06:35:47.956Z",
+            "headers": [
+                {
+                    "name": "authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWRiZjUwNDU1NDQ2Mjg1ODY2NTE0NDMiLCJ1c2VybmFtZSI6ImRlZmF1bHQiLCJuYW1lIjoiRGVmYXVsdCIsImVtYWlsIjoiZGVmYXVsdCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcwOTg3MjUwNywiZXhwIjoxNzA5ODgzMzA3fQ.ofXJuOj03AbMIVp6DmkxOIXKd7OHjP7hBamwonNr6Ww"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "category",
+                        "value": "65d80943d9c54966597aaedb"
+                    }
+                ]
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "ef0dd5c8-fb77-4b86-ae23-12932e134731",
+            "colId": "6026ffc5-816c-40b5-adf8-6a2e467871bb",
+            "containerId": "1e92b937-532b-49df-87b6-43cc45c00974",
+            "name": "getStock",
+            "url": "/product/getStock",
+            "method": "GET",
+            "sortNum": 310000,
+            "created": "2024-03-08T04:42:02.940Z",
+            "modified": "2024-03-08T04:42:36.049Z",
+            "headers": [
+                {
+                    "name": "authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWRiZjUwNDU1NDQ2Mjg1ODY2NTE0NDMiLCJ1c2VybmFtZSI6ImRlZmF1bHQiLCJuYW1lIjoiRGVmYXVsdCIsImVtYWlsIjoiZGVmYXVsdCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcwOTg3MjUwNywiZXhwIjoxNzA5ODgzMzA3fQ.ofXJuOj03AbMIVp6DmkxOIXKd7OHjP7hBamwonNr6Ww"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "20a3bce2-f188-4f7a-99fd-72b53e43610a",
+            "colId": "6026ffc5-816c-40b5-adf8-6a2e467871bb",
+            "containerId": "0188a103-111d-469a-ae09-33d2cc513b6a",
+            "name": "newPassword",
+            "url": "/user/updatePassword/",
+            "method": "PUT",
+            "sortNum": 320000,
+            "created": "2024-03-08T06:13:14.284Z",
+            "modified": "2024-03-08T06:14:13.082Z",
+            "headers": [
+                {
+                    "name": "authorization",
+                    "value": ""
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "oldPassword",
+                        "value": ""
+                    },
+                    {
+                        "name": "newPassword",
+                        "value": ""
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "954f655f-7ccb-489c-b9c6-2593a303c305",
+            "colId": "6026ffc5-816c-40b5-adf8-6a2e467871bb",
+            "containerId": "0188a103-111d-469a-ae09-33d2cc513b6a",
+            "name": "getBills",
+            "url": "/user/getBills/65dbf5045544628586651443",
+            "method": "GET",
+            "sortNum": 330000,
+            "created": "2024-03-08T06:18:01.085Z",
+            "modified": "2024-03-08T06:19:02.788Z",
+            "headers": [
+                {
+                    "name": "authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWRiZjUwNDU1NDQ2Mjg1ODY2NTE0NDMiLCJ1c2VybmFtZSI6ImRlZmF1bHQiLCJuYW1lIjoiRGVmYXVsdCIsImVtYWlsIjoiZGVmYXVsdCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcwOTg3Njg1NCwiZXhwIjoxNzA5ODg3NjU0fQ.W7ntfvZvfgtHGX8ePslAPaDFr7ODCE6CYt65QVATgLw"
+                }
+            ],
+            "params": [],
             "tests": []
         }
     ],

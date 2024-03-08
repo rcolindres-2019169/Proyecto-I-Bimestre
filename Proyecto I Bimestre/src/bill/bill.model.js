@@ -4,13 +4,7 @@ const billSchema = Schema({
     
     totalPrice:{
         type:Number,
-        required: true
     },
-    products:[{
-        type: Schema.Types.ObjectId,
-        ref: 'product',
-        required: true
-    }],
     user:{
         type: Schema.Types.ObjectId,
         ref: 'user',

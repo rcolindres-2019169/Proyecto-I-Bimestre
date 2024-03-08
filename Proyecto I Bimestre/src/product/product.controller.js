@@ -80,7 +80,7 @@ export const search = async(req,res)=>{
         let { search } = req.body
         let products = await Product.find(
             {name: { $regex: new RegExp(search, 'i') } }
-        )
+        )({path: 'category', select: 'name'})
         if (products.length === 0) {
             return res.status(404).send({ message: 'Products not found' });
         }
@@ -95,18 +95,13 @@ export const search = async(req,res)=>{
 export const searchCategory = async (req, res) => {
     try {
         let { search, category } = req.body;
-
-        let query = { name: { $regex: new RegExp(search, 'i') } };
+        let query = { category: { $regex: new RegExp(search, 'i') } };
 
         if (category) {
             query.category = category;
         }
 
-        let products = await Product.find(query);
-
-        if (products.length === 0) {
-            return res.status(404).send({ message: 'Products not found' });
-        }
+       let products = await Product.find(query)
 
         return res.send({ message: 'Products found', products });
     } catch (err) {
@@ -127,19 +122,14 @@ export const getStock = async(req,res) =>{
 }
 
 
-/*
-
-
-export const getMostSoldProducts = async (req, res) => {
+export const getSoldProductsMost = async (req, res) => {
     try {
-        // Agrupa las ventas por producto y suma las cantidades vendidas
-        const mostSoldProducts = await Sale.aggregate([
-            { $group: { _id: '$product', totalSold: { $sum: '$quantity' } } },
-            { $sort: { totalSold: -1 } }, // Ordena por cantidad vendida descendente
-            { $limit: 10 } // Limita los resultados a los 10 más vendidos (puedes ajustar este número según lo desees)
+        const mostSoldProducts = await Buy.aggregate([
+            { $group: { _id: '$product', totalSold: { $sum: '$amount' } } },
+            { $sort: { totalSold: -1 } }, 
+            { $limit: 3 } 
         ]);
 
-        // Obtén los detalles de los productos más vendidos
         const products = await Product.populate(mostSoldProducts, { path: '_id', select: 'name price' });
 
         return res.json({ products });
@@ -148,4 +138,3 @@ export const getMostSoldProducts = async (req, res) => {
         return res.status(500).json({ message: 'Error getting most sold products' });
     }
 };
-*/

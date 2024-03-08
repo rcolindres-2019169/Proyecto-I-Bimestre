@@ -3,6 +3,7 @@
 import User from './user.model.js'
 import { encrypt, checkPassword, checkUpdate } from '../utils/validator.js'
 import {generateJwt} from '../utils/jwt.js'
+import Bill from '../bill/bill.model.js'
 
 
 export const defaultAdmin = async()=>{
@@ -119,6 +120,7 @@ export const deleteU = async(req, res)=>{
     try{
         let { id } = req.params
         let uid = req.user._id
+        if(id != uid) return res.status(401).send({message: 'You can only delete your account'})
         let user = await User.findOne({_id: id, user: uid})
         if(!user)
         return res.status(404).send({message: 'User not found and not deleted'})
@@ -141,6 +143,22 @@ export const get = async (req,res ) =>{
         return res.status(500).send({ message: 'Error getting users' })
     }
 }
+
+export const getUserBills = async (req, res) => {
+    try {
+        let {id} = req.params
+        let uid = req.user._id
+        if(id != uid) return res.status(401).send({message: 'You can only get your bills'})
+        const userBills = await Bill.find({ user: uid }).populate([
+            { path: 'buy', model: 'buy' },
+            { path: 'user', select: 'username' },
+        ]);
+        return res.send({ bills: userBills });
+    } catch (error) {
+        console.error('Error getting bills', error);
+        return res.status(500).send({ message: 'Error getting bills of the user' });
+    }
+};
 
 
 export const search = async(req,res)=>{

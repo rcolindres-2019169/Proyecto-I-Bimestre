@@ -3,13 +3,13 @@ import {Schema, model } from 'mongoose';
 const buySchema = Schema({
     user:{
         type: Schema.Types.ObjectId,
-        ref: 'user'
+        ref: 'user', 
+        required: true
     },
     totalPrice:{
-        type:Number,
+        type:Number
     },
     items: [{
-        
         products:{
             type: Schema.Types.ObjectId,
             ref: 'product',
