@@ -13,6 +13,7 @@ export const save = async(req, res)=>{
         }
         let totalPrice = product.price * amount;
         product.stock -= amount;
+        if(product.stock === 0) return res.status(404).send({message: 'Not products in stock'})
         await product.save();
 
         let buy = new Buy({ ...req.body, totalPrice })
